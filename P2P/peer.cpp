@@ -176,6 +176,7 @@ int main(int argc, char *argv[])
     int s;
     const char* hosts_file = argv[1];
     const char* PING_BASE = "ping -c 4 ";
+    const char* host = argv[2];
     char buff[MAX_BUFFER_SIZE];
     
     std::vector<Peer> network_peers;
@@ -214,7 +215,7 @@ int main(int argc, char *argv[])
             Peer target_peer;
             target_peer.peerID = static_cast<uint32_t>(std::atoi(id_str.c_str()));
             
-            // Safely copy IP and Location into char primitives
+            // Safely copy IP and Location into char 
             std::strncpy(target_peer.ip_string, ip_str.c_str(), INET_ADDRSTRLEN - 1);
             target_peer.ip_string[INET_ADDRSTRLEN - 1] = '\0';
 
@@ -259,7 +260,7 @@ int main(int argc, char *argv[])
     if((sendall(s, serialized_data, &total_bytes)) == -1){
         perror("Error in sending data")
     };
-    
+
     return 0;
 }
 
